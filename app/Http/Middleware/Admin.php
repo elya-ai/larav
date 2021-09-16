@@ -22,10 +22,7 @@ class Admin
 
         if (!$users)
         {
-            return response()->json([
-                'succes' => false,
-                'message' => 'Вам отказано в доступе.'
-            ], 403);
+            return response()->json("Вам отказано в доступе.");
         }
 
         return $next($req);
