@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class Mid
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,17 @@ class Mid
      */
     public function handle(Request $req, Closure $next)
     {
-        if (!$req->header('api_token'))
-            return response()->json("Не введен api_token");
-        if (!User::where('api_token', $req->api_token)->first())
-            return response()->json("Такого пользователя не существует");
+        $token = $req->header('api_token');
+        $users = User::where('api_token', $token)->where('type', 'admin')->first();
+
+        if (!$users)
+        {
+            return response()->json([
+                'succes' => false,
+                'message' => 'Вам отказано в доступе.'
+            ], 403);
+        }
+
         return $next($req);
     }
 }

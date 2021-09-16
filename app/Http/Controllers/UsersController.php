@@ -94,4 +94,9 @@ class UsersController extends Controller
     {
     	return response()->json("Метод отработал");
     }
+
+    public function adminOrGuest(Request $req)
+    {
+        return response()->json("Добро пожаловать!");
+    }
 }

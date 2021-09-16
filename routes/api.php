@@ -21,3 +21,4 @@ Route::delete('/delete/', [UsersController::class, 'delete']);
 Route::post('/register/', [UsersController::class, 'register']);
 Route::post('/auth/', [UsersController::class, 'auth']);
 Route::post('/proverka/', [UsersController::class, 'proverka'])->middleware("Mid");
+Route::post('/adminorguest/', [UsersController::class, 'adminOrGuest'])->middleware("Mid","Admin");
