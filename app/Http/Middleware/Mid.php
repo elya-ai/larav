@@ -17,9 +17,12 @@ class Mid
      */
     public function handle(Request $req, Closure $next)
     {
-        if (!$req->header('api_token'))
+        $api_token = $req->header('api_token');
+
+        if (!$api_token)
             return response()->json("Не введен api_token");
-        if (!User::where('api_token', $req->api_token)->first())
+        
+        if (!User::where('api_token', $api_token)->first())
             return response()->json("Такого пользователя не существует");
         return $next($req);
     }
