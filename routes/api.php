@@ -22,3 +22,5 @@ Route::post('/register/', [UsersController::class, 'register']);
 Route::post('/auth/', [UsersController::class, 'auth']);
 Route::post('/proverka/', [UsersController::class, 'proverka'])->middleware("Mid");
 Route::post('/adminorguest/', [UsersController::class, 'adminOrGuest'])->middleware("Mid","Admin");
+Route::get('/getprod/', [UsersController::class, 'getProd']);
+Route::get('/getfirm/', [UsersController::class, 'getFirm']);

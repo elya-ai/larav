@@ -23,4 +23,14 @@ class User extends Authenticatable
         'password',
         'api_token',
     ];
+
+    public function products()
+    {
+        return $this->hasMany('App\Models\Product', 'user_id', 'id');
+    }
+
+    public function phones()
+    {
+        return $this->hasMany('App\Models\Phones', 'user_id', 'id')->where('firm', 'nokia');
+    }
 }

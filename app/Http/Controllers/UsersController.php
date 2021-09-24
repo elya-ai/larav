@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Phones;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -98,5 +100,23 @@ class UsersController extends Controller
     public function adminOrGuest(Request $req)
     {
         return response()->json("Добро пожаловать!");
+    }
+
+    public function getProd()
+    {
+        $users = User::get();
+        foreach ($users as $user) {
+            $user['products'] = $user->products()->get();
+        }
+        return response()->json($users);
+    }
+
+    public function getFirm()
+    {
+        $users = User::get();
+        foreach ($users as $user) {
+            $user['phones'] = $user->phones()->get();
+        }
+        return response()->json($users);
     }
 }
